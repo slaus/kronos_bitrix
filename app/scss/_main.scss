@@ -38,10 +38,11 @@
       max-width: 100%;
 
       @media screen and (max-width: 1281px) {
-        width: 100%;
+        width: 532px;
       }
 
       @include mobile() {
+        width: 100%;
         margin-left: 0 !important;
         flex-direction: column;
       }
@@ -49,7 +50,7 @@
       &-block {
         font-size: 14px;
         width: 32%;
-        height: 235px;
+        height: 225px;
         flex-wrap: wrap;
         display: inline-flex;
         padding: 20px 15px 15px 20px;
@@ -100,7 +101,7 @@
 
     &-description {
       float: right;
-      padding: 40px 40px 30px 60px;
+      padding: 40px 40px 15px 60px;
       margin-left: 40px;
       width: 676px;
 
@@ -127,7 +128,7 @@
 
         @include mobile() {
           width: 288px;
-          margin: 0 auto 30px;
+          margin: 0 auto 15px;
           order: 0;
         }
 
@@ -138,7 +139,7 @@
 
         & p {
           display: block;
-          margin-bottom: 30px;
+          margin-bottom: 15px;
           line-height: 126%;
         }
 
@@ -168,14 +169,21 @@
       & .parthners {
         width: 100%;
         display: flex;
+        padding-top: 5px;
 
         @include mobile() {
+          display: block;
           height: 80px;
           width: 288px;
           overflow: hidden;
-          margin: 0 auto 20px;
+          margin: 0 auto 35px;
           order: 1;
           flex-direction: column;
+          padding-top: 0;
+
+          & img {
+            width: inherit;
+          }
         }
       }
     }
@@ -329,10 +337,10 @@
           margin-top: 0px;
           width: 270px;
           font-size: 16px;
-          line-height: 19px;
+          line-height: 20px;
           text-align: center;
           letter-spacing: 0.4px;
-          margin-bottom: 10px;
+          margin-bottom: 0px;
         }
       }
     }
@@ -420,12 +428,144 @@
 }
 
 .mask {
-  background: $orange;
+  width: 252px;
   margin-right: 20px;
-  border: 1px solid $grey;
-  width: 247px;
   height: 33px;
-  background: url("../images/phone.png") center center no-repeat;
+  //background: url(../images/phone.png) left center no-repeat;
+  display: flex;
+  align-items: center;
+
+  @include mobile() {
+    flex-direction: column;
+    margin-right: 0;
+    height: auto;
+  }
+
+  .lang__list {
+    position: absolute;
+    right: -11px;
+    top: -15px;
+    font-size: 18px;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255, 102, 0, .2);
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: .2s;
+
+    &-cell {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    &-table {
+      display: table;
+      border-collapse: collapse;
+    }
+    &-row {
+      display: table-row;
+      text-decoration: none;
+      font-size: 18px;
+      letter-spacing: .36px;
+      cursor: pointer;
+    }
+  }
+
+  & .input__group.input__group_submit button {
+    padding-bottom: 5px;
+
+    @include mobile() {
+      padding: 0;
+      margin-right: 0;
+    }
+  }
+
+  & .input__group:not(.input__group_submit) {
+    margin-right: 10px;
+    margin-bottom: 0;
+
+    @include mobile() {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    & .input-phone {
+      min-width: 252px;
+      border: 1px solid #eee;
+
+      @include mobile() {
+        min-width: 290px;
+      }
+
+      & .input-phone__input {
+        border-right: 2px solid #eee;
+      }
+
+      & .input-phone__lang {
+        width: 48px;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        padding: 0 5px 0 0;
+
+        @include mobile() {
+          width: 65px;
+        }
+
+        & .lang__current > img {
+          width: 15px;
+          margin-left: 8px;
+
+          @include mobile() {
+            width: 22px;
+          }
+        }
+
+        & .lang__list-row > .lang__list-cell:first-child {
+          padding: 5px 0px 5px 12px;
+          letter-spacing: 0.48px;
+          text-align: left;
+        }
+
+        & .lang__list-row > .lang__list-cell:last-child {
+          padding: 7px 24px 7px 7px;
+        }
+      }
+
+      & .input-phone__placeholder {
+        font-size: 14px;
+        letter-spacing: .36px;
+        padding: 9px 17px 0;
+
+        @include mobile() {
+          font-size: 16px;
+        }
+      }
+
+      & label {
+        font-size: 11px;
+        line-height: 13px;
+        letter-spacing: 0.48px;
+        color: $grey;
+        border: 4px solid $white;
+        position: absolute;
+        top: -14px;
+        left: 5px;
+        padding: 0 2px;
+      }
+    }
+
+    & input {
+      height: 33px;
+
+      @include mobile() {
+        height: 40px;
+      }
+    }
+
+  }
 }
 
 .countdownHolder {

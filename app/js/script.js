@@ -3,7 +3,7 @@
 $(".spincrement").spincrement({
     decimalPoint: ".",
     thousandSeparator: "",
-    duration: 1000
+    duration: 1500
 });
 
 
@@ -34,9 +34,9 @@ $(function () {
             var carousel = $(this),
                 width = carousel.innerWidth();
 
-            if (width >= 991) {
-                width = width / 2;
-            } else if (width >= 767) {
+            if (width >= 576) {
+                width = width / 3;
+            } else if (width >= 288) {
                 width = width;
             }
 
@@ -45,10 +45,11 @@ $(function () {
         .jcarousel({
             wrap: 'circular',
             animation: {
-                duration: 1000,
-                speed: 1000,
+                duration: 0,
+                speed: 1500,
                 easing: 'linear',
-                complete: function () {
+                complete: function (event, carousel) {
+                    $(carousel._element.context).find('li').show().fadeOut(1000);
                 }
             }
         })
@@ -56,48 +57,11 @@ $(function () {
             interval: 8000,
             target: '+=1',
             autostart: true,
-        })
-        .on('mouseover', function (e) {
-            $(this).jcarouselAutoscroll('stop');
-        })
-        .on('mouseout', function (e) {
-            $(this).jcarouselAutoscroll('start');
         });
 
-    $('.jcarousel-control-prev')
-        .jcarouselControl({
-            target: '-=1'
-        });
-
-    $('.jcarousel-control-next')
-        .jcarouselControl({
-            target: '+=1'
-        });
-
-    $('.jcarousel-pagination')
-        .on('jcarouselpagination:active', 'a', function () {
-            $(this).addClass('active');
-        })
-        .on('jcarouselpagination:inactive', 'a', function () {
-            $(this).removeClass('active');
-        })
-        .on('click', function (e) {
-            e.preventDefault();
-        })
-        .jcarouselPagination({
-            perPage: 1,
-            item: function (page) {
-                return '<a href="#' + page + '">' + page + '</a>';
-            }
-        });
-
-//Match Height
-    $(function() {
-        $('.item').matchHeight({
-            byRow: true,
-            property: 'height',
-            target: null,
-            remove: false
-        });
+    jcarousel.on('jcarousel:animate', function (event, carousel) {
+        $(carousel._element.context).find('li').hide().fadeIn(2000);
     });
+
+
 });
